@@ -1,0 +1,38 @@
+.syntax unified
+.thumb
+
+.section .vectors
+.word 0x20001000    // Stack pointer
+.word _reset        // Reset handler
+.word Vector_handler
+.word Vector_handler
+.word Vector_handler
+.word Vector_handler
+.word Vector_handler
+.word Vector_handler
+.word Vector_handler
+.word Vector_handler
+.word Vector_handler
+.word Vector_handler
+.word Vector_handler
+.word Vector_handler
+.word Vector_handler
+.word Vector_handler
+.word Vector_handler
+.word Vector_handler
+.word Vector_handler
+.word Vector_handler
+
+.extern main        // Declare main is external
+
+.section .text
+.global _reset
+.type _reset, %function
+.thumb_func
+_reset:
+    bl main
+    b .
+
+.thumb_func
+Vector_handler:
+    b _reset
